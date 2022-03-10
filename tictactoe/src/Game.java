@@ -1,6 +1,6 @@
 public class Game {
     private static final String [][] field = {{"-","-","-"},{"-","-","-"},{"-","-","-"}};
-    private String playerTurn = "0";
+    private String playerTurn = "X";
 
     public static String[][] getField() {
         return field;

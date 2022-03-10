@@ -30,7 +30,7 @@ public class Player {
         while (true){
             row = sc.nextInt();
             col = sc.nextInt();
-            if (Game.getField()[row - 1][col - 1] == "-"){
+            if (row >= 0 && row <= 3 && col >= 0 && col <= 3 && Game.getField()[row - 1][col - 1] == "-"){
                 Game.setField(row - 1, col - 1, status);
                 break;
             }else System.out.println("ошибка, попробуйте заново");
