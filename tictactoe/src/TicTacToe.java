@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class TicTacToe {
     public static void main(String[] args) {
+        int deadHeatCount = 0;
         Player currentPlayer;
         Player player1 = new Player();
         Player player2 = new Player();
@@ -39,6 +40,7 @@ public class TicTacToe {
 
         while (true){
             game.showField();
+
             if (player1.getStatus() == game.getPlayerTurn()) {
                 currentPlayer = player1;
             }else currentPlayer = player2;
@@ -48,6 +50,10 @@ public class TicTacToe {
                 System.out.println(currentPlayer.getName() + " победил!");
                 Player looser = currentPlayer.equals(player1) ? player2 : player1;
                 Repo.writeWinner(currentPlayer.getName(), looser.getName());
+                break;
+            }
+            if (++deadHeatCount == 9) {
+                System.out.println("Ничья");
                 break;
             }
             game.playerGetReadyToggle();
