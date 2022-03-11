@@ -1,6 +1,19 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
 public class Game {
-    private static final String [][] field = {{"-","-","-"},{"-","-","-"},{"-","-","-"}};
-    private String playerTurn = "X";
+    private static final String [][] newField = {{"-","-","-"},{"-","-","-"},{"-","-","-"}};
+    private static final String [][] field = new String[3][3];
+    private String playerTurn;
+    private int deadHeatCount;
+
+    public Game(){
+        for (int i = 0; i < 3; i++){
+            System.arraycopy(newField[i], 0, field[i], 0, 3);
+        }
+        playerTurn = "X";
+        deadHeatCount = 0;
+    }
 
     public static String[][] getField() {
         return field;
@@ -58,6 +71,14 @@ public class Game {
         return false;
     }
 
+    public boolean deadHeatCheck (){
+        if (++deadHeatCount == 9) {
+            System.out.println("Ничья");
+            deadHeatCount = 0;
+            return true;
+        }else return false;
+    }
+
     /**
      * Переключает очередь игроков
      * refactor - возможно метод избыточен
@@ -65,6 +86,16 @@ public class Game {
     public void playerGetReadyToggle (){
         playerTurn = playerTurn.equals("0") ? "X" : "0";
     }
+
+    public boolean isNewGame (){
+        System.out.print("Хотите сыграть еще раз? (Да/Нет) : ");
+        Scanner sc = new Scanner(System.in);
+        String pick = sc.nextLine().trim();
+
+        return  pick.equals("Y") || pick.equals("y") || pick.equals("Д")
+                || pick.equals("д") || pick.equals("Да") || pick.equals("да");
+    }
+
 
 
 }
