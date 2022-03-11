@@ -22,7 +22,7 @@ public class Repo {
 
     protected static HashMap<String, String> readData(){
         HashMap<String, String> res = new HashMap<>();
-        try (FileReader fr = new FileReader(fileName);) {
+        try (FileReader fr = new FileReader(fileName)) {
             Scanner scan = new Scanner(fr);
             while (scan.hasNextLine()) {
                 String line = scan.nextLine();
@@ -42,7 +42,7 @@ public class Repo {
         for (Map.Entry<String, String> st: data.entrySet()){
             res = res.concat(st.getKey() + ":" + st.getValue() + "\n");
         }
-        try (FileWriter writer = new FileWriter(fileName);) {
+        try (FileWriter writer = new FileWriter(fileName)) {
             writer.write(res);
         } catch (IOException e) {
             System.out.println(e.getMessage());
